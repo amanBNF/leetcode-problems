@@ -1,0 +1,24 @@
+#inorder traversal binary tree using stack(BFS)
+class Solution {
+public:
+    vector<int> inorderTraversal(TreeNode* root) {
+        vector<int> out;
+        stack<TreeNode*> st;
+
+        if(root == nullptr) return out;
+
+        TreeNode* curr = root;
+
+        while(curr != nullptr || !st.empty()){
+            while(curr != nullptr){
+                st.push(curr);
+                curr = curr->left;
+            }
+            curr = st.top();
+            st.pop();
+            out.push_back(curr->val);
+            curr = curr->right;
+        }
+        return out;
+    }
+};
